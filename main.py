@@ -18,6 +18,9 @@ from api_key import weather_api_key
 
 import requests
 
+#ollama llm model
+from ai import ask_ai
+
 def get_weather(city):
     api_key = weather_api_key
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
@@ -72,6 +75,10 @@ def processCommand(c):
             now = datetime.now().strftime("%H:%M")
             speak(f"The current time is {now}")
             return
+    else:
+        response = ask_ai(c)
+        speak(response)
+
 
 # def ask_yes_no(prompt):
 #     speak(prompt)
